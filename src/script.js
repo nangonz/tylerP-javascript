@@ -5,8 +5,9 @@ const display_output = document.querySelector(".display .output");
 let input = "";
 
 for (let key of keys) {
+  // obtiene el valor de data-key del elemento
   const value = key.dataset.key;
-
+  // añade evento a cada key
   key.addEventListener("click", () => {
     if (value == "clear") {
       clearScreen();
@@ -92,6 +93,8 @@ function validateInput(value) {
   // obtiene el último caracter del input
   let last_input = input.slice(-1);
   let operators = ["*", "/", "+", "-"];
+  // evita que se introduzca mas de un "%"
+  if (value == "%" && last_input == "%") return false;
   // evita que se introduzca mas de un "." decimal
   if (value == "." && last_input == ".") return false;
   // evita que se introduzcan dos operadores seguidos
@@ -128,6 +131,10 @@ function deleteChar() {
 }
 
 function resolveOperation() {
+  //resulve la operacion y la muestra en display_output
   let result = eval(prepareInput(input));
   display_output.innerHTML = cleanOutput(result);
+  // limpia el display_input y reemplaza la operacion previa con el resultado
+  display_input.innerHTML = "";
+  input = result.toString();
 }
