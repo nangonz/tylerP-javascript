@@ -14,7 +14,13 @@ for (let key of keys) {
     } else if (value == "backspace") {
       deleteChar();
     } else if (value == "=") {
-      resolveOperation();
+      if (decimalValidation(input)) {
+        try {
+          resolveOperation();
+        } catch (error) {
+          display_input.innerHTML = "error de sintaxis";
+        }
+      }
     } else if (value == "brackets") {
       if (
         input.indexOf("(") == -1 ||
@@ -66,7 +72,8 @@ function cleanInput(input) {
 }
 
 function cleanOutput(output) {
-  let output_string = output.toString();
+  let fixedOutput = output.toFixed(2);
+  let output_string = fixedOutput.toString();
   let decimal = output_string.split(".")[1];
   output_string = output_string.split(".")[0];
 
@@ -81,7 +88,7 @@ function cleanOutput(output) {
     }
   }
 
-  if (decimal) {
+  if (decimal && decimal !== "00") {
     output_array.push(".");
     output_array.push(decimal);
   }
@@ -136,5 +143,38 @@ function resolveOperation() {
   display_output.innerHTML = cleanOutput(result);
   // limpia el display_input y reemplaza la operacion previa con el resultado
   display_input.innerHTML = "";
-  input = result.toString();
+  input = cleanOutput(result);
+}
+
+function decimalValidation(input) {
+  // Obtiene los operandos del input
+  let decimal_operands = getDecimalOperands(input);
+  console.log("operands:", decimal_operands);
+  let valid_decimal = true;
+
+  for (let operand of decimal_operands) {
+    let decimal_dots = operand.split("").filter((el) => el == ".").length;
+    if (decimal_dots > 1) valid_decimal = false;
+    console.log(operand, "decimal_amount:", decimal_dots);
+  }
+  return valid_decimal;
+}
+
+function getDecimalOperands(inputString) {
+  let input_array = inputString.split("");
+  for (let i = 0; i < input_array.length; i++) {
+    if (
+      input_array[i] == "*" ||
+      input_array[i] == "/" ||
+      input_array[i] == "+" ||
+      input_array[i] == "-" ||
+      input_array[i] == "%"
+    ) {
+      input_array[i] = "|";
+    }
+  }
+  return input_array
+    .join("")
+    .split("|")
+    .filter((op) => op.includes("."));
 }
