@@ -107,3 +107,7 @@
 .keys .key.action span {
   color: #26fed7;
 }
+
+.error {
+  font-size: 2rem;
+}

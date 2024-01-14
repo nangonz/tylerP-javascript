@@ -1,6 +1,7 @@
 const keys = document.querySelectorAll(".key");
 const display_input = document.querySelector(".display .input");
 const display_output = document.querySelector(".display .output");
+const display_error = document.querySelector(".error");
 
 let input = "";
 
@@ -14,12 +15,11 @@ for (let key of keys) {
     } else if (value == "backspace") {
       deleteChar();
     } else if (value == "=") {
-      if (decimalValidation(input)) {
-        try {
-          resolveOperation();
-        } catch (error) {
-          display_input.innerHTML = "error de sintaxis";
-        }
+      try {
+        resolveOperation();
+      } catch (error) {
+        console.log(error);
+        display_output.innerHTML = ` <span class="error operator">Error</span> `;
       }
     } else if (value == "brackets") {
       if (
@@ -154,7 +154,7 @@ function decimalValidation(input) {
 
   for (let operand of decimal_operands) {
     let decimal_dots = operand.split("").filter((el) => el == ".").length;
-    if (decimal_dots > 1) valid_decimal = false;
+    if (decimal_dots >= 1) valid_decimal = false;
     console.log(operand, "decimal_amount:", decimal_dots);
   }
   return valid_decimal;
