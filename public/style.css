@@ -127,3 +127,7 @@
 .keys .key.action {
   background-color: rgb(75, 181, 75);
 }
+
+.keys .key.action > .delete {
+  display: flex;
+}
