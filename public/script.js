@@ -1,7 +1,6 @@
 const keys = document.querySelectorAll(".key");
 const display_input = document.querySelector(".display .input");
 const display_output = document.querySelector(".display .output");
-const display_error = document.querySelector(".error");
 
 let input = "";
 
@@ -18,7 +17,6 @@ for (let key of keys) {
       try {
         resolveOperation();
       } catch (error) {
-        console.log(error);
         display_output.innerHTML = ` <span class="error operator">Error</span> `;
       }
     } else if (value == "brackets") {
@@ -53,27 +51,28 @@ function cleanInput(input) {
 
   for (let i = 0; i < input_array_length; i++) {
     if (input_array[i] == "*") {
-      input_array[i] = ` <span class="operator">x</span> `;
+      input_array[i] = `<span class="operator">x</span>`;
     } else if (input_array[i] == "/") {
-      input_array[i] = ` <span class="operator">÷</span> `;
+      input_array[i] = `<span class="operator">÷</span>`;
     } else if (input_array[i] == "%") {
-      input_array[i] = ` <span class="percent">%</span> `;
+      input_array[i] = `<span class="percent">%</span>`;
     } else if (input_array[i] == "+") {
-      input_array[i] = ` <span class="operator">+</span> `;
+      input_array[i] = `<span class="operator">+</span>`;
     } else if (input_array[i] == "-") {
-      input_array[i] = ` <span class="operator">-</span> `;
+      input_array[i] = `<span class="operator">-</span>`;
     } else if (input_array[i] == "(") {
-      input_array[i] = ` <span class="brackets">(</span> `;
+      input_array[i] = `<span class="brackets">(</span>`;
     } else if (input_array[i] == ")") {
-      input_array[i] = ` <span class="brackets">)</span> `;
+      input_array[i] = `<span class="brackets">)</span>`;
     }
   }
   return input_array.join("");
 }
 
 function cleanOutput(output) {
-  let fixedOutput = output.toFixed(2);
-  let output_string = fixedOutput.toString();
+  // formatea numero output a un string de dos decimales
+  let output_string = output.toFixed(2);
+  // separa la parte entera de la decimal
   let decimal = output_string.split(".")[1];
   output_string = output_string.split(".")[0];
 
