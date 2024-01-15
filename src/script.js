@@ -55,9 +55,9 @@ function cleanInput(input) {
     if (input_array[i] == "*") {
       input_array[i] = ` <span class="operator">x</span> `;
     } else if (input_array[i] == "/") {
-      input_array[i] = ` <span class="percent">÷</span> `;
+      input_array[i] = ` <span class="operator">÷</span> `;
     } else if (input_array[i] == "%") {
-      input_array[i] = ` <span class="operator">%</span> `;
+      input_array[i] = ` <span class="percent">%</span> `;
     } else if (input_array[i] == "+") {
       input_array[i] = ` <span class="operator">+</span> `;
     } else if (input_array[i] == "-") {
