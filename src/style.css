@@ -13,20 +13,20 @@
   background: rgb(38, 254, 215);
   background: radial-gradient(
     circle,
-    rgba(38, 254, 215, 1) 0%,
-    rgba(235, 102, 102, 1) 100%
+    rgba(64, 207, 64, 0.75) 30%,
+    rgba(72, 72, 240, 1) 100%
   );
 }
 
 .calculator {
-  background-color: #22252d;
+  background-color: #494e57;
   width: 100%;
   max-width: 375px;
   min-height: 640px;
   display: flex;
   flex-direction: column;
   border-radius: 1.5rem;
-  box-shadow: 2px 2px 0px 5px #eb6666;
+  box-shadow: 2px 2px 0px 5px #242424;
   overflow: hidden;
 }
 
@@ -36,14 +36,15 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  color: white;
+  color: rgb(232, 232, 232);
   text-align: right;
   flex: 1 1 0%;
 }
 
 .display .input {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  text-shadow: 1px 1px 1px #2b3045;
 }
 
 .display .output {
@@ -52,15 +53,18 @@
   width: 100%;
   max-width: 100%;
   overflow: auto;
+  text-shadow: 2px 2px 1px #202736;
 }
 
 .display .operator {
-  color: #eb6666;
+  color: rgb(71, 252, 71);
+  font-weight: 700;
 }
 
 .display .brackets,
 .display .percent {
-  color: #26fed7;
+  color: rgb(46, 67, 255);
+  font-weight: 700;
 }
 
 .keys {
@@ -71,7 +75,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 1rem;
-  box-shadow: 0px -2px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .keys .key {
@@ -80,8 +84,8 @@
   display: block;
   height: 0;
   padding-top: 100%;
-  background-color: #262933;
-  border-radius: 1rem;
+  background-color: #393d4c;
+  border-radius: 3rem;
   transition: 0.2s;
   user-select: none;
 }
@@ -91,9 +95,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  color: white;
+  color: rgb(158, 177, 233);
+  text-shadow: 2px 1px 1px #09183a;
 }
 
 .keys .key:hover {
@@ -101,9 +106,24 @@
 }
 
 .keys .key.operator span {
-  color: #eb6666;
+  color: #ececec;
+  font-size: 3rem;
+  font-weight: 400;
 }
 
 .keys .key.action span {
-  color: #26fed7;
+  color: hsl(0, 0%, 100%);
+  text-shadow: 2px 1px 1px #176f21;
+}
+
+.error {
+  font-size: 2rem;
+}
+
+.keys .key.operator {
+  background-color: rgb(90, 90, 224);
+}
+
+.keys .key.action {
+  background-color: rgb(75, 181, 75);
 }
